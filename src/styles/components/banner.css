@@ -1,0 +1,102 @@
+.main {
+  height: 50vh;
+  /*fallback height if below height does not work  */
+  height: calc(var(--vh, 1vh) * 50);
+  /* here we are calculting the inner height as in mobile devices only height property messes up the design b.c of addition content like top url bar and bottom navigation */
+  background-color: #fff;
+}
+.main .row {
+  flex-direction: column;
+  justify-content: center;
+}
+.main .row h2 {
+  font-size: 3rem;
+  line-height: 4.2rem;
+  font-weight: 700;
+  z-index: 10;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+@media (max-width: 768px) {
+  .main .row h2 {
+    font-size: 2.4rem;
+    line-height: 3rem;
+  }
+}
+@media (max-width: 425px) {
+  .main .row h2 {
+    margin-top: 72px;
+    font-size: 1.7rem;
+    line-height: 2.2rem;
+  }
+}
+.main .row h2 .line {
+  margin-bottom: 8px;
+  /* height required for reveal animation */
+  height: 56px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .main .row h2 .line {
+    height: 48px;
+  }
+}
+@media (max-width: 425px) {
+  .main .row h2 .line {
+    height: 32px;
+  }
+}
+.main .row h2 .line span {
+  position: absolute;
+}
+.main .row .btn-row {
+  width: 256px;
+  position: relative;
+  z-index: 2;
+}
+.main .row .btn-row a {
+  font-size: 1.6rem;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .main .row .btn-row a {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 425px) {
+  .main .row .btn-row a {
+    font-size: 1.1rem;
+  }
+}
+.main .row .btn-row a svg {
+  margin-left: 16px;
+  border: 2px solid #000;
+  padding: 12px;
+  height: 24px;
+  width: 24px;
+  border-radius: 100px;
+  transition: 0.4s ease-in-out;
+}
+@media (max-width: 768px) {
+  .main .row .btn-row a svg {
+    padding: 6px;
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (max-width: 425px) {
+  .main .row .btn-row a svg {
+    padding: 4px;
+    width: 16px;
+    height: 16px;
+  }
+}
+.main .row .btn-row a:hover svg {
+  background: #000;
+  color: #fff;
+}
