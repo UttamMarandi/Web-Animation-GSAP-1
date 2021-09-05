@@ -33,30 +33,28 @@ function Cases() {
       <div className="container-fluid">
         <div className="cases-navigation">
           <div className="cases-arrow prev disabled">
-            <CasesNext />
+            <CasesPrev />
           </div>
           <div className="cases-arrow next disabled">
-            <CasesPrev />
+            <CasesNext />
           </div>
         </div>
         <div className="row">
-          <div className="case">
-            {caseStudies.map((caseItem) => (
-              <div className="case" key={caseItem.id}>
-                <div className="case-details">
-                  <span>{caseItem.subtitle}</span>
-                  <h2>{caseItem.title}</h2>
-                </div>
-                <div className="case-image">
-                  <img
-                    // bug fix : require seems to be not working , use .default for image import
-                    src={require(`../assets/${caseItem.img}.png`).default}
-                    alt={caseItem.title}
-                  />
-                </div>
+          {caseStudies.map((caseItem) => (
+            <div className="case" key={caseItem.id}>
+              <div className="case-details">
+                <span>{caseItem.subtitle}</span>
+                <h2>{caseItem.title}</h2>
               </div>
-            ))}
-          </div>
+              <div className="case-image">
+                <img
+                  // bug fix : require seems to be not working , use .default for image import
+                  src={require(`../assets/${caseItem.img}.png`).default}
+                  alt={caseItem.title}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
