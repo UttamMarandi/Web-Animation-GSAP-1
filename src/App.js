@@ -18,7 +18,7 @@ import "./styles/app.css";
 const routes = [
   { path: "/", name: "Home", Component: Home },
   { path: "/case-studies", name: "Case Studies", Component: CaseStudies },
-  { path: "/approach", name: "Services", Component: Services },
+  { path: "/services", name: "Services", Component: Services },
   { path: "/about-us", name: "About Us", Component: About },
   { path: "/approach", name: "Approach", Component: Approach },
 ];
@@ -41,6 +41,7 @@ function App() {
           </Route>
         ))}
       </div>
+      <Navigation />
     </>
   );
 }
