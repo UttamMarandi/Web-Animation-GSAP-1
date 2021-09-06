@@ -5,7 +5,7 @@
 @import "./components/navigation.css";
 body,
 html {
-  /* visibility: hidden; */
+  visibility: hidden;
   user-select: none;
   background: #fff;
   overscroll-behavior: none;
@@ -64,6 +64,7 @@ html {
   display: flex;
   height: 100%;
 }
+/* Intro overlay */
 .intro-overlay .top {
   height: 50vh;
   height: calc(var(--vh, 1vh) * 50);
