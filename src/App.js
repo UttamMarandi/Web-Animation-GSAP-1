@@ -77,7 +77,8 @@ function App() {
   console.log(dimensions);
   return (
     <>
-      <Header />
+      <Header dimensions={dimensions} />
+      {/* pass the dimensions as props to Header. Required for custom animation for diffrent viewport sizes */}
       <div className="App">
         {routes.map(({ path, Component }) => (
           <Route key={path} exact path={path}>

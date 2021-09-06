@@ -56,8 +56,6 @@ function Home() {
     setAnimationComplete(true);
   };
   useEffect(() => {
-    let vh = window.innerHeight * 0.1;
-    // document.documentElement.style.setProperty("--vh", `${vh}px`);
     homeAnimation(completeAnimation); //call homeAnimation declared above
   }, []);
   return (
