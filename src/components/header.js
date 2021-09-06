@@ -5,19 +5,24 @@ import gsap from "gsap";
 
 let tl = gsap.timeline();
 
-function Header({ dimensions }) {
+function Header({ history, dimensions }) {
+  //we can access history b.c of withRouter
   const [menuState, setMenuState] = useState({ menuOpened: false }); //we want to track the state of of our menu
   useEffect(() => {
+    //so when we move to another page using Router , the menu is still open b.c menuState is still set to open . we need to set to false when route changes
+    history.listen(() => {
+      setMenuState({ menuOpened: false });
+    });
+
     if (menuState.menuOpened === true) {
       //Run Menu Open animation
-      gsap.to("nav", 0, { css: { display: "block" } }); //tween //earlier nav is display:none, now dispplay block
-      gsap.to("body", 0, { css: { overflow: "hidden" } });
-
-      tl.to(".App", {
-        duration: 1,
-        y: dimensions.width <= 654 ? "80vh" : "70vh", //conditional animation
-        ease: "expo.inOut",
-      })
+      tl.to("nav", 0, { css: { display: "block" } }) //tween //earlier nav is display:none, now dispplay block
+        .to("body", 0, { css: { overflow: "hidden" } })
+        .to(".App", {
+          duration: 1,
+          y: dimensions.width <= 654 ? "80vh" : "70vh", //conditional animation
+          ease: "expo.inOut",
+        })
         .to(".hamburger-menu span", {
           //this animation will remove the ham-menu
           duration: 0.6,
@@ -129,7 +134,7 @@ function Header({ dimensions }) {
           },
         });
     }
-  });
+  }, [menuState.menuOpened]); //whenever menuState.menuOpened changes run the useEffect code
 
   return (
     <div className="header">
