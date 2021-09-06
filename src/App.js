@@ -11,6 +11,7 @@ import Approach from "./pages/approcah";
 import About from "./pages/about";
 import CaseStudies from "./pages/caseStudies";
 import Services from "./pages/services";
+import Navigation from "./components/navigation";
 //styles
 import "./styles/app.css";
 
