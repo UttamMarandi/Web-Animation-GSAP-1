@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 // Components
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/header";
 
 //library
@@ -23,14 +23,58 @@ const routes = [
   { path: "/approach", name: "Approach", Component: Approach },
 ];
 
+function debounce(fn, ms) {
+  let timer;
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  };
+}
+
 function App() {
-  useEffect(() => {
-    //prevents flash
-    // gsap.to("body", 0, { css: { visibility: "visible" } });
-    //above code saying gsap.to is depreceated (lol), so created a timeline
-    const tlbody = gsap.timeline();
-    tlbody.to("body", 0, { css: { visibility: "visible" } });
+  //prevents flash
+  // gsap.to("body", 0, { css: { visibility: "visible" } });
+  //above code saying gsap.to is depreceated (lol), so created a timeline
+  const tlbody = gsap.timeline();
+  tlbody.to("body", 0, { css: { visibility: "visible" } });
+
+  //on changing dimensions the heigth/width of page does not work properly , bc we are setting the height/width using js...we need to solve this
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
   });
+  useEffect(() => {
+    // let vh = window.height * 0.1;
+    // document.documentElement.style.setProperty("--vh", `${vh}px`);
+    //above code not working fr me
+
+    //this func will resize the window each time the window is resized by user
+    // const HandleResize = () => {
+    //   setDimensions({
+    //     height: window.innerHeight,
+    //     width: window.innerWidth,
+    //   });
+    // };
+
+    // a debounce function makes sure that code is only triggered once per user input.
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }, 1000);
+    //wait for 1s after user input
+
+    window.addEventListener("resize", debouncedHandleResize); //this function is called each time the window is resized
+
+    return () => {
+      window.removeEventListener("resize", debouncedHandleResize); //cleanup function
+    };
+  });
+  console.log(dimensions);
   return (
     <>
       <Header />
@@ -47,3 +91,6 @@ function App() {
 }
 
 export default App;
+
+//debounced HandleResize
+//fancy advanced stuff\
